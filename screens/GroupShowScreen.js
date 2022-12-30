@@ -4,34 +4,40 @@ import List from '../components/list/List';
 import uuid from 'react-uuid';
 import MainView from '../components/ui/MainView';
 import HSMetrics from '../components/homeScreen/HSMetrics';
+import ListItem from '../components/list/ListItem';
 
 const GroupShowScreen = () => {
-	const groups = [
+	const decks = [
 		{
 			id: uuid(),
-			name: 'Semester 1',
+			name: 'Chemistry 1',
 		},
 		{
 			id: uuid(),
-			name: 'Semester 2',
+			name: 'Intro to Environmental Science',
 		},
 		{
 			id: uuid(),
-			name: 'Semester 3',
+			name: 'Statistics',
 		},
 		{
 			id: uuid(),
 			name: 'Chemistry Prereqs',
 		},
 	];
+
+	const renderItem = ({ item }, showItemNav) => {
+		return <ListItem showItemNav={showItemNav} text={item.name} />;
+	};
 	return (
 		<MainView>
 			<HSMetrics />
 			<List
-				data={groups}
-				maxLength={3}
+				renderItem={renderItem}
+				data={decks}
 				keyName='recent-groups'
 				listTitle='RECENT GROUPS'
+				showItemNav='DeckShowScreen'
 			/>
 		</MainView>
 	);

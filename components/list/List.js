@@ -12,33 +12,41 @@ import { colors } from '../../utils/color_constants';
 import ListItem from './ListItem';
 import { useNavigation } from '@react-navigation/native';
 
-const List = ({ maxLength, data, showItemNav, listTitle, showItemsNav }) => {
+const List = ({
+	maxLength,
+	data,
+	showItemNav,
+	listTitle,
+	showItemsNav,
+	renderItem,
+}) => {
 	data = data.length > maxLength ? data.slice(0, maxLength) : data;
 	const navigation = useNavigation();
 
-	const renderItem = ({ item }) => {
-		return <ListItem showItemNav={showItemNav} text={item.name} />;
-	};
+	// const renderItem = ({ item }) => {
+	// 	return <ListItem showItemNav={showItemNav} text={item.name} />;
+	// };
 
 	const returnList = () => {
 		if (maxLength) {
 			return data.length
 				? data.map((item) => {
-						return (
-							<ListItem
-								showItemNav={showItemNav}
-								key={item.id}
-								text={item.name}
-							/>
-						);
+						// return (
+						// 	<ListItem
+						// 		showItemNav={showItemNav}
+						// 		key={item.id}
+						// 		text={item.name}
+						// 	/>
+						// );
+						return renderItem({ item }, showItemNav);
 				  })
 				: null;
 		} else {
 			return data.length ? (
 				<FlatList
 					data={data}
-					renderItem={renderItem}
-					keyExtractor={(item) => item.id}
+					renderItem={(item) => renderItem(item, showItemNav)}
+					// keyExtractor={(item) => item.id}
 				/>
 			) : null;
 		}

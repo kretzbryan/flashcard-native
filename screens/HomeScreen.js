@@ -4,6 +4,7 @@ import HSMetrics from '../components/homeScreen/HSMetrics';
 import List from '../components/list/List';
 import uuid from 'react-uuid';
 import MainView from '../components/ui/MainView';
+import ListItem from '../components/list/ListItem';
 
 const HomeScreen = () => {
 	const groups = [
@@ -62,6 +63,11 @@ const HomeScreen = () => {
 			name: 'Chemistry Prereqs',
 		},
 	];
+
+	const renderItem = ({ item }, showItemNav) => {
+		return <ListItem showItemNav={showItemNav} text={item.name} />;
+	};
+
 	return (
 		<MainView scrollable>
 			<HSMetrics />
@@ -69,6 +75,7 @@ const HomeScreen = () => {
 				style={styles.scrollContainer}
 				contentContainerStyle={{ flexGrow: 1 }}>
 				<List
+					renderItem={renderItem}
 					data={groups}
 					maxLength={3}
 					keyName='recent-groups'
@@ -77,6 +84,7 @@ const HomeScreen = () => {
 					showItemsNav='GroupsScreen'
 				/>
 				<List
+					renderItem={renderItem}
 					data={decks}
 					maxLength={3}
 					keyName='recent-decks'
@@ -86,6 +94,7 @@ const HomeScreen = () => {
 				/>
 
 				<List
+					renderItem={renderItem}
 					data={popQuizes}
 					maxLength={3}
 					keyName='pop-quizes'

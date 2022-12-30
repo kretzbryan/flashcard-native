@@ -9,6 +9,7 @@ import DecksScreen from './screens/DecksScreen';
 import GroupShowScreen from './screens/GroupShowScreen';
 import DeckShowScreen from './screens/DeckShowScreen';
 import { colors } from './utils/color_constants';
+import SessionScreen from './screens/SessionScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -60,6 +61,14 @@ export default function App() {
 							title: 'Group',
 						}}
 						component={GroupShowScreen}
+					/>
+					<Stack.Screen
+						name='SessionScreen'
+						options={{
+							title: 'Session',
+							headerShown: false,
+						}}
+						component={SessionScreen}
 					/>
 				</Stack.Navigator>
 			</NavigationContainer>

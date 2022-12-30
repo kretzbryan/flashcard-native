@@ -7,7 +7,14 @@ const ListItem = ({ text, showItemNav, showItemsNav }) => {
 	const navigation = useNavigation();
 	return (
 		<Pressable
-			onPress={showItemNav ? () => navigation.navigate(showItemNav) : null}
+			onPress={
+				showItemNav
+					? () => {
+							console.log('pressed');
+							navigation.navigate(showItemNav);
+					  }
+					: null
+			}
 			style={styles.listItem}>
 			<Text style={styles.listItemText}>{text}</Text>
 		</Pressable>

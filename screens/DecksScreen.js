@@ -3,6 +3,7 @@ import React from 'react';
 import List from '../components/list/List';
 import uuid from 'react-uuid';
 import MainView from '../components/ui/MainView';
+import ListItem from '../components/list/ListItem';
 
 const DecksScreen = () => {
 	const decks = [
@@ -23,9 +24,14 @@ const DecksScreen = () => {
 			name: 'Chemistry Prereqs',
 		},
 	];
+
+	const renderItem = ({ item }, showItemNav) => {
+		return <ListItem showItemNav={showItemNav} text={item.name} />;
+	};
 	return (
 		<MainView>
 			<List
+				renderItem={renderItem}
 				data={decks}
 				showItemNav='DeckShowScreen'
 				keyName='recent-groups'
